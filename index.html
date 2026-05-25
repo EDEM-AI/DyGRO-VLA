@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DyGRO-VLA: Cross-Task Scaling of Vision-Language-Action Models via Dynamic Grouped Residual Optimization."
+    />
+    <title>DyGRO-VLA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="DyGRO-VLA home">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>DyGRO-VLA</span>
+      </a>
+      <nav class="site-nav">
+        <a href="#pipeline">Pipeline</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#libero">LIBERO</a>
+        <a href="#robotwin">RoboTwin</a>
+        <a href="#conclusion">Conclusion</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <h1>
+          DyGRO-VLA: Cross-Task Scaling of Vision-Language-Action Models via
+          Dynamic Grouped Residual Optimization
+        </h1>
+        <div class="hero-meta" aria-label="Authors and affiliations">
+          <div class="hero-authors">
+            <span>Sixu Lin<sup>1,2</sup></span>
+            <span>Yunpeng Qing<sup>3</sup></span>
+            <span>Litao Liu<sup>4</sup></span>
+            <span>Ming Zhou<sup>5</sup></span>
+            <span>Ruixing Jin<sup>1</sup></span>
+            <span>Xiaoyi Fan<sup>2</sup></span>
+            <span>Guiliang Liu<sup>1,6,&dagger;</sup></span>
+          </div>
+          <div class="hero-affiliations">
+            <span><sup>1</sup> School of Data Science, The Chinese University of Hong Kong (Shenzhen)</span>
+            <span><sup>2</sup> Jiangxing Intelligence Technology Inc.</span>
+            <span><sup>3</sup> Zhejiang University</span>
+            <span><sup>4</sup> Rutgers University-New Brunswick</span>
+            <span><sup>5</sup> Shanghai AI Laboratory</span>
+            <span><sup>6</sup> Shenzhen Loop Area Institute</span>
+          </div>
+          <div class="hero-notes">
+            <span><sup>&dagger;</sup> Corresponding author: Guiliang Liu, liuguiliang@cuhk.edu.cn</span>
+          </div>
+        </div>
+        <div class="action-row" aria-label="Project links">
+          <a class="button primary" href="https://arxiv.org/abs/2605.17486">Paper PDF</a>
+          <a class="button" href="#libero">Videos</a>
+        </div>
+      </section>
+
+      <section class="section pipeline-section" id="pipeline">
+        <div class="section-heading">
+          <h2>Pipeline</h2>
+        </div>
+        <figure class="pipeline-figure">
+          <img
+            src="assets/pipeline.png"
+            alt="Pipeline figure from the DyGRO-VLA paper."
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption>
+            Figure 1: Method pipeline. DyGRO-VLA follows a two-stage training
+            recipe. In the offline stage, the VLA backbone is trained to predict
+            actions while learning a compact latent representation via an
+            information-bottleneck objective. In the online stage, the VLA backbone
+            is frozen and the residual MoE is optimized in multi-task settings as a
+            residual compensation module to improve multi-task ability and
+            generalization.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section text-section" id="abstract">
+        <div class="section-heading">
+          <h2>Abstract</h2>
+        </div>
+        <div class="section-body">
+          <p>
+            Recent progress in Reinforcement Learning (RL) has shown strong potential
+            for enhancing the fine-grained manipulation capabilities of
+            Vision-Language-Action (VLA) models. However, existing RL fine-tuning
+            methods are typically task-specific, which can disrupt the original
+            cross-task representations learned by generalist VLA models and hinder
+            their scalability across diverse manipulation tasks. In this work, we
+            propose DyGRO-VLA (Dynamic Grouped Residual Optimization), a novel
+            two-stage framework for cross-task RL fine-tuning of VLA models. In the
+            first stage, we introduce an information-theoretic objective to learn
+            compact and task-relevant latent representations that preserve cross-task
+            knowledge. In the second stage, we design a Mixture-of-RL-Residuals
+            (MoRR) module, which dynamically routes tasks to specialized residual
+            policy experts based on learned task embeddings. This enables efficient
+            online policy optimization while mitigating negative transfer across
+            tasks. Extensive experiments on LIBERO, RoboTwin2, and real-world
+            robotic manipulation tasks demonstrate that DyGRO-VLA consistently
+            improves multi-task success rates and generalization performance compared
+            to strong VLA and RL fine-tuning baselines.
+          </p>
+        </div>
+      </section>
+
+      <section class="section video-section" id="libero">
+        <div class="section-heading">
+          <h2>LIBERO Evaluation Videos</h2>
+        </div>
+        <div class="video-grid libero-grid">
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_spatial/task_010_bowl_between_plate_and_ramekin.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Spatial</span> pick up the black bowl between the plate and the ramekin and place it on the plate</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_spatial/task_019_bowl_on_cabinet.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Spatial</span> pick up the black bowl on the wooden cabinet and place it on the plate</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_object/task_000_alphabet_soup.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Object</span> pick up the alphabet soup and place it in the basket</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_object/task_009_orange_juice.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Object</span> pick up the orange juice and place it in the basket</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_goal/task_020_open_middle_drawer.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Goal</span> open the middle drawer of the cabinet</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_goal/task_029_wine_bottle_on_rack.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-Goal</span> put the wine bottle on the rack</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_10/task_036_mug_and_pudding.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-10</span> put the white mug on the plate and put the chocolate pudding to the right of the plate</h3>
+          </article>
+          <article class="video-card">
+            <video
+              src="eval_videos/libero_10/task_038_moka_pots_on_stove.mp4"
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+            <h3><span>LIBERO-10</span> put both moka pots on the stove</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="section video-section" id="robotwin">
+        <div class="section-heading">
+          <h2>RoboTwin Videos</h2>
+        </div>
+        <div class="paired-video-grid">
+          <article class="paired-task">
+            <h3 class="paired-title">Pick Dual Bottles</h3>
+            <div class="paired-videos">
+              <article class="video-card">
+                <video
+                  src="sim/bottles/success_episode31_seed100043.mp4"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                ></video>
+                <h3><span>Simulation</span> Pick Dual Bottles</h3>
+              </article>
+              <article class="video-card">
+                <video src="real_web/bottles/demo2.mp4" muted loop playsinline controls preload="auto"></video>
+                <h3><span>Real-world</span> Pick Dual Bottles</h3>
+              </article>
+            </div>
+          </article>
+          <article class="paired-task">
+            <h3 class="paired-title">Place Empty Cup</h3>
+            <div class="paired-videos">
+              <article class="video-card">
+                <video
+                  src="sim/cup/success_episode6_seed100015.mp4"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                ></video>
+                <h3><span>Simulation</span> Place Empty Cup</h3>
+              </article>
+              <article class="video-card">
+                <video src="real_web/cup/demo2.mp4" muted loop playsinline controls preload="auto"></video>
+                <h3><span>Real-world</span> Place Empty Cup</h3>
+              </article>
+            </div>
+          </article>
+          <article class="paired-task">
+            <h3 class="paired-title">Stack Bowls Two</h3>
+            <div class="paired-videos">
+              <article class="video-card">
+                <video
+                  src="sim/bowls/success_episode62_seed100158.mp4"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                ></video>
+                <h3><span>Simulation</span> Stack Bowls Two</h3>
+              </article>
+              <article class="video-card">
+                <video src="real_web/bowls/demo3.mp4" muted loop playsinline controls preload="auto"></video>
+                <h3><span>Real-world</span> Stack Bowls Two</h3>
+              </article>
+            </div>
+          </article>
+          <article class="paired-task">
+            <h3 class="paired-title">Beat Block Hammer</h3>
+            <div class="paired-videos">
+              <article class="video-card">
+                <video
+                  src="sim/hammer/success_episode72_seed100126.mp4"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                ></video>
+                <h3><span>Simulation</span> Beat Block Hammer</h3>
+              </article>
+              <article class="video-card">
+                <video src="real_web/harmer/demo1.mp4" muted loop playsinline controls preload="auto"></video>
+                <h3><span>Real-world</span> Beat Block Hammer</h3>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section conclusion-section" id="conclusion">
+        <div class="conclusion-card">
+          <div class="section-heading">
+            <h2>Conclusion</h2>
+          </div>
+          <div class="section-body">
+            <p>
+              We investigate the scalability challenge of RL post-training for
+              vision-language-action models, where multi-task online optimization
+              can induce cross-task interference and catastrophic forgetting. To
+              address this, we propose DyGRO-VLA, a two-stage framework that learns
+              task-sharing representations from offline demonstrations and refines
+              behavior online via dynamically routed residual RL experts. Across
+              LIBERO, RoboTwin2, and real-world Sim2Real experiments, DyGRO-VLA
+              improves multi-task performance and robustness over strong baselines,
+              with notable gains on challenging tasks. These results highlight the
+              value of preserving shared representations and using dynamic residual
+              modularization for scalable VLA post-training. An important direction
+              of future work is extending DyGRO-VLA to mobile manipulation tasks that
+              involving locomotion tasks before manipulating objects.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>DyGRO-VLA</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

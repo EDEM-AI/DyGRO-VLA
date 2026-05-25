@@ -1,0 +1,48 @@
+.DS_Store
+**/.DS_Store
+
+# Local backups and duplicated drafts
+*.dataless.bak
+vis.pptx
+video 2/
+DyGRO_VLA/
+DyGRO_VLA/ICLR_backup/
+DyGRO_VLA/backup/
+DyGRO_VLA/overleaf_submission/
+DyGRO_VLA/arxiv_submission/
+DyGRO_VLA/figures/*/
+DyGRO_VLA/example_paper.pdf
+DyGRO_VLA/icml_numpapers.pdf
+assets/page-*.png
+assets/teaser*.png
+assets/teaser*.svg
+bottles.png
+bowls.png
+cup.png
+hammer.png
+
+# Archive duplicates
+*.zip
+*.tar.gz
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Non-displayed evaluation rollouts
+*--failure--*.mp4
+eval_videos/**/*.json
+
+# Unused duplicate / alternate demo videos
+real/
+real_web/bowls/demo1.mp4
+sim/bottles/success_episode71_seed100099.mp4
+sim/bowls/success_episode31_seed100085.mp4
+sim/cup/success_episode15_seed100043.mp4
+sim/hammer/success_episode56_seed100099.mp4
